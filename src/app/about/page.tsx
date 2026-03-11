@@ -1,8 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, Target, Users, Award, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -17,11 +22,11 @@ export default function AboutPage() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40 z-10" />
         <div className="relative z-20 container-custom text-center text-white">
-          <h1 className="font-heading font-bold text-4xl md:text-5xl mb-4">
-            About Our Mission
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl mb-4">
+            {t.about.heroTitle}
           </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto">
-            Empowering orphans and vulnerable children to build brighter futures
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto">
+            {t.about.heroSubtitle}
           </p>
         </div>
       </section>
@@ -31,24 +36,17 @@ export default function AboutPage() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl text-neutral-900 mb-6">
-                Our Story
+              <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-neutral-900 mb-6">
+                {t.about.storyTitle}
               </h2>
-              <p className="text-lg text-neutral-600 mb-4 leading-relaxed">
-                Together For Orphans was founded in 2009 with a vision to transform the lives 
-                of orphaned and vulnerable children. What started as a small initiative has 
-                grown into a comprehensive organization serving hundreds of children across 
-                multiple communities.
+              <p className="text-base sm:text-lg text-neutral-600 mb-4 leading-relaxed">
+                {t.about.storyP1}
               </p>
               <p className="text-neutral-600 mb-4 leading-relaxed">
-                We are a non-governmental, non-political, and non-denominational organization 
-                dedicated to supporting vulnerable individuals, with a special focus on children. 
-                Our mission extends beyond immediate aid to create sustainable, long-term solutions.
+                {t.about.storyP2}
               </p>
               <p className="text-neutral-600 leading-relaxed">
-                Through partnerships with local communities, international donors, and dedicated 
-                volunteers, we continue to expand our reach and impact, ensuring every child has 
-                the opportunity to thrive.
+                {t.about.storyP3}
               </p>
             </div>
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
@@ -67,22 +65,22 @@ export default function AboutPage() {
       <section className="section-padding bg-neutral-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-neutral-900 mb-4">
-              Our Core Values
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-neutral-900 mb-4">
+              {t.about.valuesTitle}
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              These principles guide everything we do
+            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
+              {t.about.valuesSubtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-2xl transition-shadow">
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">Compassion</h3>
+              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">{t.about.compassion}</h3>
               <p className="text-neutral-600">
-                We approach every child with empathy, understanding, and unconditional love.
+                {t.about.compassionDesc}
               </p>
             </div>
 
@@ -90,9 +88,9 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Target className="w-8 h-8 text-secondary" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">Integrity</h3>
+              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">{t.about.integrity}</h3>
               <p className="text-neutral-600">
-                We maintain transparency and accountability in all our operations.
+                {t.about.integrityDesc}
               </p>
             </div>
 
@@ -100,9 +98,9 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">Community</h3>
+              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">{t.about.community}</h3>
               <p className="text-neutral-600">
-                We believe in building strong partnerships with local communities.
+                {t.about.communityDesc}
               </p>
             </div>
 
@@ -110,9 +108,9 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-primary-light/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-primary-light" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">Excellence</h3>
+              <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3">{t.about.excellence}</h3>
               <p className="text-neutral-600">
-                We strive for the highest standards in all our programs and services.
+                {t.about.excellenceDesc}
               </p>
             </div>
           </div>
@@ -123,39 +121,35 @@ export default function AboutPage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-primary text-white rounded-2xl p-8 md:p-12">
-              <h2 className="font-heading font-bold text-3xl mb-6">Our Mission</h2>
-              <p className="text-lg leading-relaxed mb-4">
-                To provide comprehensive support to orphaned and vulnerable children through:
+            <div className="bg-primary text-white rounded-2xl p-6 sm:p-8 md:p-12">
+              <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-6">{t.about.missionTitle}</h2>
+              <p className="text-base sm:text-lg leading-relaxed mb-4">
+                {t.about.missionIntro}
               </p>
-              <ul className="space-y-3 text-lg">
+              <ul className="space-y-3 text-base sm:text-lg">
                 <li className="flex items-start">
                   <span className="mr-3">•</span>
-                  <span>Protection and defense of children's rights</span>
+                  <span>{t.about.missionItem1}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3">•</span>
-                  <span>Universal access to quality education</span>
+                  <span>{t.about.missionItem2}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3">•</span>
-                  <span>Healthcare services for all</span>
+                  <span>{t.about.missionItem3}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3">•</span>
-                  <span>Sustainable development programs</span>
+                  <span>{t.about.missionItem4}</span>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-secondary text-white rounded-2xl p-8 md:p-12">
-              <h2 className="font-heading font-bold text-3xl mb-6">Our Vision</h2>
-              <p className="text-lg leading-relaxed">
-                We envision a world where every child, regardless of their circumstances, 
-                has the opportunity to grow up in a safe, nurturing environment with access 
-                to education, healthcare, and the resources they need to build a successful, 
-                independent life. We strive to create lasting change that breaks the cycle 
-                of poverty and empowers future generations.
+            <div className="bg-secondary text-white rounded-2xl p-6 sm:p-8 md:p-12">
+              <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-6">{t.about.visionTitle}</h2>
+              <p className="text-base sm:text-lg leading-relaxed">
+                {t.about.visionText}
               </p>
             </div>
           </div>
@@ -165,19 +159,19 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="section-padding bg-neutral-50">
         <div className="container-custom text-center">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-neutral-900 mb-6">
-            Join Us in Making a Difference
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-neutral-900 mb-6">
+            {t.about.ctaTitle}
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
-            Your support can transform lives and create lasting change for children in need
+          <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
+            {t.about.ctaSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/donate" className="btn-secondary text-lg group inline-flex items-center">
-              Make a Donation
+              {t.common.makeADonation}
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Link>
             <Link href="/contact" className="btn-outline text-lg">
-              Get Involved
+              {t.common.getInvolved}
             </Link>
           </div>
         </div>

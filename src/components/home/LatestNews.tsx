@@ -1,57 +1,62 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 const LatestNews = () => {
+  const { t } = useLanguage();
+
   const news = [
     {
-      title: 'New Education Center Opens',
-      excerpt: 'We are thrilled to announce the opening of our newest education center, providing learning opportunities for 150 more children.',
-      date: 'December 1, 2024',
+      title: t.home.news.article1Title,
+      excerpt: t.home.news.article1Excerpt,
+      date: t.home.news.article1Date,
       image: '/images/school-children.jpg',
-      category: 'Education',
+      category: t.home.news.article1Category,
     },
     {
-      title: 'Annual Health Campaign Success',
-      excerpt: 'Our recent health campaign reached over 1,000 families, providing essential medical care and health education.',
-      date: 'November 15, 2024',
+      title: t.home.news.article2Title,
+      excerpt: t.home.news.article2Excerpt,
+      date: t.home.news.article2Date,
       image: '/images/children-group.jpg',
-      category: 'Healthcare',
+      category: t.home.news.article2Category,
     },
     {
-      title: 'Community Garden Project Launch',
-      excerpt: 'Empowering communities through sustainable agriculture and nutrition education for a healthier future.',
-      date: 'October 28, 2024',
+      title: t.home.news.article3Title,
+      excerpt: t.home.news.article3Excerpt,
+      date: t.home.news.article3Date,
       image: '/images/community.jpg',
-      category: 'Development',
+      category: t.home.news.article3Category,
     },
   ];
 
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 sm:mb-12">
           <div>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-neutral-900 mb-4">
-              Latest News & Updates
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-neutral-900 mb-3 sm:mb-4">
+              {t.home.news.heading}
             </h2>
-            <p className="text-lg text-neutral-600">
-              Stay informed about our projects and their impact
+            <p className="text-base sm:text-lg text-neutral-600">
+              {t.home.news.subtitle}
             </p>
           </div>
           <Link
             href="/news"
-            className="mt-4 md:mt-0 btn-outline group inline-flex items-center"
+            className="mt-4 md:mt-0 btn-outline group inline-flex items-center text-sm sm:text-base"
           >
-            View All News
+            {t.home.news.viewAll}
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {news.map((article, index) => (
             <article key={index} className="card group">
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-48 sm:h-56 overflow-hidden">
                 <Image
                   src={article.image}
                   alt={article.title}
@@ -62,22 +67,22 @@ const LatestNews = () => {
                   {article.category}
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex items-center text-neutral-500 text-sm mb-3">
                   <Calendar size={16} className="mr-2" />
                   {article.date}
                 </div>
-                <h3 className="font-heading font-bold text-xl text-neutral-900 mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-heading font-bold text-lg sm:text-xl text-neutral-900 mb-3 group-hover:text-primary transition-colors">
                   {article.title}
                 </h3>
-                <p className="text-neutral-600 mb-4 leading-relaxed">
+                <p className="text-sm sm:text-base text-neutral-600 mb-4 leading-relaxed">
                   {article.excerpt}
                 </p>
                 <Link
                   href="/news"
-                  className="inline-flex items-center text-primary font-semibold hover:translate-x-2 transition-transform"
+                  className="inline-flex items-center text-primary font-semibold hover:translate-x-2 transition-transform text-sm sm:text-base"
                 >
-                  Read More
+                  {t.common.readMore}
                   <ArrowRight className="ml-2" size={18} />
                 </Link>
               </div>

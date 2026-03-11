@@ -1,0 +1,594 @@
+export const en = {
+  nav: {
+    home: 'Home',
+    aboutUs: 'About Us',
+    ourHospital: 'Our Hospital',
+    receptionCenters: 'Reception Centers',
+    education: 'Education',
+    projects: 'Projects',
+    news: 'News',
+    contact: 'Contact',
+  },
+
+  header: {
+    tagline: 'Building Brighter Futures',
+    donate: 'Donate',
+    donateNow: 'Donate Now',
+  },
+
+  footer: {
+    description:
+      'A charitable organization dedicated to supporting orphans and vulnerable children through education, healthcare, and sustainable development programs.',
+    quickLinks: 'Quick Links',
+    ourPrograms: 'Our Programs',
+    contactUs: 'Contact Us',
+    healthcare: 'Healthcare',
+    educationProgram: 'Education',
+    sustainableDev: 'Sustainable Development',
+    childProtection: 'Child Protection',
+    officeHours: 'Office Hours',
+    allRightsReserved: 'All rights reserved.',
+    privacyPolicy: 'Privacy Policy',
+    termsOfService: 'Terms of Service',
+  },
+
+  common: {
+    learnMore: 'Learn More',
+    readMore: 'Read More',
+    donateNow: 'Donate Now',
+    donate: 'Donate',
+    makeADonation: 'Make a Donation',
+    getInvolved: 'Get Involved',
+    supportOurMission: 'Support Our Mission',
+  },
+
+  home: {
+    hero: {
+      title1: 'Together, We Build',
+      title2: 'Brighter Futures',
+      subtitle:
+        'Supporting orphans and vulnerable children through education, healthcare, and sustainable development programs. Every child deserves a chance to thrive.',
+      ctaDonate: 'Make a Donation',
+      ctaLearnMore: 'Learn More',
+      statChildrenNum: '500+',
+      statChildren: 'Children Supported',
+      statYearsNum: '15',
+      statYears: 'Years of Service',
+      statProgramsNum: '10+',
+      statPrograms: 'Active Programs',
+      statTransparencyNum: '100%',
+      statTransparency: 'Transparency',
+    },
+    services: {
+      heading: 'How We Help',
+      subtitle:
+        'Through our comprehensive programs, we provide holistic support to orphaned and vulnerable children, giving them hope for a brighter future.',
+      hospitalTitle: 'Our Hospital',
+      hospitalDesc:
+        'Providing quality healthcare services to children and families in need, ensuring access to medical care for all.',
+      centersTitle: 'Reception Centers',
+      centersDesc:
+        'Safe havens offering shelter, care, and support for orphaned and vulnerable children in crisis.',
+      educationTitle: 'Education for All',
+      educationDesc:
+        'Ensuring every child has access to quality education, school supplies, and learning opportunities.',
+      developmentTitle: 'Sustainable Development',
+      developmentDesc:
+        'Building long-term solutions through community development and environmental sustainability programs.',
+    },
+    about: {
+      badge: 'About Us',
+      heading: 'Building Hope, Creating Futures',
+      p1: 'Together For Orphans was founded with a simple yet powerful mission: to provide every child with the opportunity to thrive, regardless of their circumstances.',
+      p2: 'We are a non-governmental, non-political, and non-denominational organization dedicated to supporting vulnerable children. Through our comprehensive programs in healthcare, education, and community development, we work tirelessly to create lasting change.',
+      feature1Title: 'Child Protection & Rights',
+      feature1Desc: "Defending and advocating for every child's fundamental rights",
+      feature2Title: 'Education for All',
+      feature2Desc: 'Fighting for universal access to quality education',
+      feature3Title: 'Healthcare Access',
+      feature3Desc: 'Providing quality medical care to those in need',
+      feature4Title: 'Sustainable Development',
+      feature4Desc: 'Building eco-friendly solutions for future generations',
+      cta: 'Learn More About Our Mission',
+      floatingYears: '15+',
+      floatingDesc: "Years of making a difference in children's lives",
+    },
+    impact: {
+      heading: 'Our Impact in Numbers',
+      subtitle:
+        "Together, we're creating real change in the lives of children and communities. Here's what we've accomplished so far.",
+      stat1Num: '500+',
+      stat1Label: 'Children Supported',
+      stat1Desc: 'Orphans and vulnerable children receiving care',
+      stat2Num: '350+',
+      stat2Label: 'Students Educated',
+      stat2Desc: 'Children enrolled in our education programs',
+      stat3Num: '10,000+',
+      stat3Label: 'Medical Consultations',
+      stat3Desc: 'Healthcare services provided annually',
+      stat4Num: '5',
+      stat4Label: 'Active Centers',
+      stat4Desc: 'Reception and care facilities operational',
+      cta: "Join us in making a lasting difference in children's lives",
+      ctaButton: 'Support Our Mission',
+    },
+    news: {
+      heading: 'Latest News & Updates',
+      subtitle: 'Stay informed about our projects and their impact',
+      viewAll: 'View All News',
+      article1Title: 'New Education Center Opens',
+      article1Excerpt:
+        'We are thrilled to announce the opening of our newest education center, providing learning opportunities for 150 more children.',
+      article1Date: 'December 1, 2024',
+      article1Category: 'Education',
+      article2Title: 'Annual Health Campaign Success',
+      article2Excerpt:
+        'Our recent health campaign reached over 1,000 families, providing essential medical care and health education.',
+      article2Date: 'November 15, 2024',
+      article2Category: 'Healthcare',
+      article3Title: 'Community Garden Project Launch',
+      article3Excerpt:
+        'Empowering communities through sustainable agriculture and nutrition education for a healthier future.',
+      article3Date: 'October 28, 2024',
+      article3Category: 'Development',
+    },
+  },
+
+  about: {
+    heroTitle: 'About Our Mission',
+    heroSubtitle:
+      'Empowering orphans and vulnerable children to build brighter futures',
+    storyTitle: 'Our Story',
+    storyP1:
+      'Together For Orphans was founded in 2009 with a vision to transform the lives of orphaned and vulnerable children. What started as a small initiative has grown into a comprehensive organization serving hundreds of children across multiple communities.',
+    storyP2:
+      'We are a non-governmental, non-political, and non-denominational organization dedicated to supporting vulnerable individuals, with a special focus on children. Our mission extends beyond immediate aid to create sustainable, long-term solutions.',
+    storyP3:
+      'Through partnerships with local communities, international donors, and dedicated volunteers, we continue to expand our reach and impact, ensuring every child has the opportunity to thrive.',
+    valuesTitle: 'Our Core Values',
+    valuesSubtitle: 'These principles guide everything we do',
+    compassion: 'Compassion',
+    compassionDesc:
+      'We approach every child with empathy, understanding, and unconditional love.',
+    integrity: 'Integrity',
+    integrityDesc:
+      'We maintain transparency and accountability in all our operations.',
+    community: 'Community',
+    communityDesc:
+      'We believe in building strong partnerships with local communities.',
+    excellence: 'Excellence',
+    excellenceDesc:
+      'We strive for the highest standards in all our programs and services.',
+    missionTitle: 'Our Mission',
+    missionIntro:
+      'To provide comprehensive support to orphaned and vulnerable children through:',
+    missionItem1: "Protection and defense of children's rights",
+    missionItem2: 'Universal access to quality education',
+    missionItem3: 'Healthcare services for all',
+    missionItem4: 'Sustainable development programs',
+    visionTitle: 'Our Vision',
+    visionText:
+      'We envision a world where every child, regardless of their circumstances, has the opportunity to grow up in a safe, nurturing environment with access to education, healthcare, and the resources they need to build a successful, independent life. We strive to create lasting change that breaks the cycle of poverty and empowers future generations.',
+    ctaTitle: 'Join Us in Making a Difference',
+    ctaSubtitle:
+      'Your support can transform lives and create lasting change for children in need',
+  },
+
+  hospital: {
+    heroTitle: 'Our Hospital',
+    heroSubtitle:
+      'Providing quality healthcare to children and families in need',
+    introTitle: 'Healthcare for Everyone',
+    introText:
+      'Our hospital serves as a beacon of hope, providing essential healthcare services to orphans, vulnerable children, and their communities. With a dedicated team of medical professionals and modern facilities, we ensure that quality healthcare is accessible to all, regardless of their ability to pay.',
+    facilityTitle: 'Our Medical Facility',
+    facilityText:
+      'Established to address the critical healthcare needs of our community, our hospital features modern equipment and a compassionate staff committed to providing excellent care.',
+    modernEquipment: 'Modern Equipment',
+    modernEquipmentDesc: 'Up-to-date medical technology and diagnostic tools',
+    qualifiedStaff: 'Qualified Staff',
+    qualifiedStaffDesc:
+      'Experienced doctors, nurses, and medical professionals',
+    affordableCare: 'Affordable Care',
+    affordableCareDesc: 'Subsidized and free services for those in need',
+    servicesTitle: 'Our Services',
+    servicesSubtitle:
+      'Comprehensive healthcare services designed to meet the needs of our community',
+    primaryCare: 'Primary Care',
+    primaryCareDesc:
+      'Comprehensive medical consultations and preventive care',
+    pediatric: 'Pediatric Services',
+    pediatricDesc:
+      'Specialized care for infants, children, and adolescents',
+    maternal: 'Maternal Health',
+    maternalDesc: 'Pre-natal, delivery, and post-natal care for mothers',
+    emergency: 'Emergency Care',
+    emergencyDesc: '24/7 emergency medical services and urgent care',
+    impactTitle: 'Our Healthcare Impact',
+    impactSubtitle:
+      'Making a difference in the lives of thousands each year',
+    consultations: 'Annual Consultations',
+    deliveries: 'Deliveries Per Year',
+    emergencyServices: 'Emergency Services',
+    visitTitle: 'Visit Our Hospital',
+    location: 'Location',
+    locationValue: '123 Medical Drive, Hope City',
+    emergencyLabel: 'Emergency',
+    emergencyValue: '+1 (555) 911-HELP',
+    hours: 'Hours',
+    hoursValue: 'Open 24/7',
+    ctaTitle: 'Support Our Healthcare Mission',
+    ctaSubtitle:
+      'Your donation helps us provide life-saving medical care to those who need it most',
+  },
+
+  centers: {
+    heroTitle: 'Reception & Transit Centers',
+    heroSubtitle:
+      'Safe havens providing care, shelter, and hope for children in crisis',
+    introTitle: 'A Place of Safety and Care',
+    introP1:
+      'Our reception and transit centers serve as temporary homes for orphaned and vulnerable children, providing them with a safe, nurturing environment while we work towards permanent solutions for their care.',
+    introP2:
+      'Each center is staffed with trained caregivers, social workers, and counselors who ensure that every child receives the physical, emotional, and psychological support they need during this critical time.',
+    approachTitle: 'Our Approach',
+    approachText:
+      'We believe every child deserves a loving, stable environment. Our centers provide immediate relief while we work on long-term solutions such as family reunification, foster care placement, or adoption when appropriate.',
+    individualCare: 'Individual Care Plans',
+    individualCareDesc:
+      "Personalized support tailored to each child's needs",
+    familyTracing: 'Family Tracing',
+    familyTracingDesc:
+      'Working to reunite children with extended family when possible',
+    educationalContinuity: 'Educational Continuity',
+    educationalContinuityDesc:
+      'Ensuring children continue their education without interruption',
+    servicesTitle: 'Services We Provide',
+    servicesSubtitle:
+      "Comprehensive care addressing all aspects of a child's wellbeing",
+    safeShelter: 'Safe Shelter',
+    safeShelterDesc:
+      'Clean, comfortable accommodation with age-appropriate facilities and security.',
+    nutritiousMeals: 'Nutritious Meals',
+    nutritiousMealsDesc:
+      'Three balanced meals daily plus snacks, addressing nutritional needs.',
+    healthcare: 'Healthcare',
+    healthcareDesc:
+      'Regular medical check-ups, vaccinations, and access to hospital services.',
+    education: 'Education',
+    educationDesc:
+      'School enrollment, tutoring support, and educational materials.',
+    counseling: 'Counseling',
+    counselingDesc:
+      'Professional psychological support to help children process trauma.',
+    recreation: 'Recreation',
+    recreationDesc:
+      'Play areas, sports activities, and creative programs for healthy development.',
+    ourCentersTitle: 'Our Centers',
+    ourCentersSubtitle:
+      'Multiple facilities serving different communities and needs',
+    center1Name: 'Main Reception Center',
+    center1Location: 'Hope City',
+    center1Capacity: '50 children',
+    center1Services: ['Shelter', 'Meals', 'Education', 'Counseling'],
+    center2Name: 'Transit Care Facility',
+    center2Location: 'Unity Town',
+    center2Capacity: '30 children',
+    center2Services: [
+      'Emergency Care',
+      'Medical Support',
+      'Family Reunification',
+    ],
+    center3Name: 'Youth Development Center',
+    center3Location: 'Future Village',
+    center3Capacity: '40 adolescents',
+    center3Services: [
+      'Vocational Training',
+      'Life Skills',
+      'Job Placement',
+    ],
+    servicesLabel: 'Services:',
+    ctaTitle: 'Help Us Provide Safe Homes',
+    ctaSubtitle:
+      'Your support ensures we can continue providing shelter and care to children in need',
+    ctaButton: 'Support Our Centers',
+  },
+
+  education: {
+    heroTitle: 'Education for All',
+    heroSubtitle:
+      'Empowering children through quality education and lifelong learning',
+    introTitle: 'The Power of Education',
+    introP1:
+      'Education is the key to breaking the cycle of poverty and building a brighter future. We believe every child deserves access to quality education, regardless of their circumstances.',
+    introP2:
+      'Our comprehensive education programs support children from primary school through vocational training, ensuring they have the skills and knowledge needed to succeed in life.',
+    missionTitle: 'Our Educational Mission',
+    missionText:
+      'We provide comprehensive educational support that goes beyond just paying school fees. Our holistic approach ensures children have everything they need to succeed academically and personally.',
+    fullScholarships: 'Full Scholarships',
+    fullScholarshipsDesc:
+      'Covering tuition, fees, and examination costs',
+    learningMaterials: 'Learning Materials',
+    learningMaterialsDesc:
+      'Books, uniforms, and supplies for all students',
+    academicSupport: 'Academic Support',
+    academicSupportDesc: 'Tutoring and mentorship programs',
+    nutritionalSupport: 'Nutritional Support',
+    nutritionalSupportDesc:
+      'Daily meals to ensure children can focus on learning',
+    programsTitle: 'Our Education Programs',
+    programsSubtitle:
+      'Supporting students at every stage of their educational journey',
+    primaryTitle: 'Primary Education',
+    primaryDesc: 'Foundation learning for children ages 6-12',
+    primaryStudents: '250+',
+    primaryFeatures: [
+      'School supplies',
+      'Uniforms',
+      'Daily meals',
+      'Transportation',
+    ],
+    secondaryTitle: 'Secondary Education',
+    secondaryDesc: 'Advanced studies for adolescents ages 13-18',
+    secondaryStudents: '100+',
+    secondaryFeatures: [
+      'Textbooks',
+      'Lab equipment',
+      'Exam fees',
+      'Tutoring',
+    ],
+    vocationalTitle: 'Vocational Training',
+    vocationalDesc: 'Practical skills development for youth',
+    vocationalStudents: '75+',
+    vocationalFeatures: [
+      'Trade skills',
+      'Apprenticeships',
+      'Job placement',
+      'Business skills',
+    ],
+    students: 'Students',
+    includes: 'Includes:',
+    impactTitle: 'Educational Impact',
+    impactSubtitle:
+      'Measuring success through student achievement and growth',
+    enrolledNum: '425+',
+    enrolled: 'Students Enrolled',
+    passRateNum: '95%',
+    passRate: 'Pass Rate',
+    attendanceNum: '85%',
+    attendance: 'Attendance Rate',
+    graduatesNum: '150+',
+    graduates: 'Graduates Annually',
+    successTitle: 'Student Success',
+    successSubtitle: 'Real stories of transformation through education',
+    testimonial1:
+      "Thanks to the scholarship program, I was able to complete my secondary education and now I'm studying to become a teacher. I want to give back to my community.",
+    testimonial1Author: '— Sarah, University Student',
+    testimonial2:
+      'The vocational training program taught me carpentry skills. Now I have my own workshop and can support my family.',
+    testimonial2Author: '— Michael, Carpenter',
+    testimonial3:
+      "Education changed my life. I never thought I would be able to go to school, but now I'm top of my class and dream of becoming a doctor.",
+    testimonial3Author: '— Grace, Secondary Student',
+    ctaTitle: "Invest in a Child's Future",
+    ctaSubtitle:
+      'Your donation can provide a child with the education they need to break free from poverty',
+    ctaButton: 'Sponsor a Student',
+  },
+
+  projects: {
+    heroTitle: 'Sustainable Development Projects',
+    heroSubtitle:
+      'Building long-term solutions for healthier, more resilient communities',
+    introTitle: 'Investing in Sustainable Futures',
+    introP1:
+      'Our sustainable development projects address the root causes of poverty and vulnerability by creating long-term solutions that benefit entire communities.',
+    introP2:
+      'We focus on environmental sustainability, economic empowerment, and community resilience, ensuring that our impact lasts for generations to come.',
+    activeTitle: 'Our Active Projects',
+    activeSubtitle:
+      'Making a lasting impact through innovative and sustainable initiatives',
+    gardensTitle: 'Community Gardens',
+    gardensDesc:
+      'Teaching sustainable agriculture and providing fresh produce for families',
+    gardensStatus: 'Active',
+    gardensBeneficiaries: '500+ families',
+    waterTitle: 'Clean Water Access',
+    waterDesc:
+      'Installing wells and water purification systems in underserved communities',
+    waterStatus: 'Active',
+    waterBeneficiaries: '2,000+ people',
+    solarTitle: 'Solar Energy',
+    solarDesc:
+      'Providing renewable energy solutions for schools and health centers',
+    solarStatus: 'In Progress',
+    solarBeneficiaries: '10 facilities',
+    wasteTitle: 'Waste Management',
+    wasteDesc:
+      'Environmental education and recycling initiatives for cleaner communities',
+    wasteStatus: 'Active',
+    wasteBeneficiaries: '5 communities',
+    beneficiaries: 'Beneficiaries',
+    featuredBadge: 'Featured Project',
+    featuredTitle: 'Community Garden Initiative',
+    featuredP1:
+      'Our community garden project empowers families to grow their own fresh, nutritious produce while learning sustainable farming techniques.',
+    featuredP2:
+      'Participants receive training in organic farming, composting, water conservation, and crop rotation. The gardens not only provide food security but also create opportunities for income generation through the sale of surplus produce.',
+    featuredStat1: '15 community gardens established',
+    featuredStat2: '500+ families trained in sustainable agriculture',
+    featuredStat3: '2,000+ kg of produce harvested monthly',
+    featuredCta: 'Support This Project',
+    approachTitle: 'Our Approach to Development',
+    approachSubtitle: 'We believe in community-led, sustainable solutions',
+    step1: 'Community Assessment',
+    step1Desc:
+      'We work with communities to identify their most pressing needs and priorities',
+    step2: 'Collaborative Planning',
+    step2Desc:
+      'Together, we design solutions that are culturally appropriate and sustainable',
+    step3: 'Capacity Building',
+    step3Desc:
+      'We provide training and resources so communities can maintain projects long-term',
+    impactTitle: 'Environmental & Social Impact',
+    impactSubtitle: 'Creating positive change for people and planet',
+    impactWater: 'People with Clean Water Access',
+    impactCO2: 'CO2 Emissions Reduced Annually',
+    impactGardens: 'Community Gardens Thriving',
+    impactRenewable: 'Renewable Energy in Facilities',
+    ctaTitle: 'Support Sustainable Development',
+    ctaSubtitle:
+      'Your contribution helps us build lasting solutions that transform communities',
+    ctaButton: 'Make an Impact',
+  },
+
+  news: {
+    heroTitle: 'News & Updates',
+    heroSubtitle:
+      'Stay informed about our latest projects, achievements, and impact stories',
+    featuredBadge: 'Featured Story',
+    readFullStory: 'Read Full Story',
+    latestNews: 'Latest News',
+    article1Title: 'New Education Center Opens Its Doors',
+    article1Excerpt:
+      'We are thrilled to announce the opening of our newest education center, providing learning opportunities for 150 more children in our community.',
+    article1Date: 'December 1, 2024',
+    article1Author: 'Sarah Johnson',
+    article1Category: 'Education',
+    article2Title: 'Annual Health Campaign Reaches 1,000 Families',
+    article2Excerpt:
+      'Our recent health campaign was a tremendous success, providing essential medical care and health education to over 1,000 families.',
+    article2Date: 'November 15, 2024',
+    article2Author: 'Dr. Michael Chen',
+    article2Category: 'Healthcare',
+    article3Title: 'Community Garden Project Shows Impressive Results',
+    article3Excerpt:
+      'Six months after launch, our community garden initiative has exceeded expectations, with families harvesting nutritious produce.',
+    article3Date: 'October 28, 2024',
+    article3Author: 'Grace Mutoni',
+    article3Category: 'Development',
+    article4Title: 'Partnership with Local University Benefits Students',
+    article4Excerpt:
+      'We have formed an exciting partnership with State University to provide mentorship and scholarship opportunities.',
+    article4Date: 'October 10, 2024',
+    article4Author: 'James Williams',
+    article4Category: 'Education',
+    article5Title: 'Solar Panel Installation Brings Clean Energy',
+    article5Excerpt:
+      'Our facilities are now powered by renewable energy thanks to the installation of solar panels across all buildings.',
+    article5Date: 'September 22, 2024',
+    article5Author: 'Sarah Johnson',
+    article5Category: 'Development',
+    article6Title: "Children's Art Exhibition Showcases Talent",
+    article6Excerpt:
+      'Our annual art exhibition featured incredible works from our talented young artists, celebrating their creativity.',
+    article6Date: 'September 5, 2024',
+    article6Author: 'Emma Thompson',
+    article6Category: 'Events',
+    stayUpdated: 'Stay Updated',
+    newsletterText:
+      'Subscribe to our newsletter to receive the latest news and impact stories directly in your inbox',
+    emailPlaceholder: 'Enter your email address',
+    subscribe: 'Subscribe',
+    privacyNote: 'We respect your privacy. Unsubscribe at any time.',
+  },
+
+  contact: {
+    heroTitle: 'Get in Touch',
+    heroSubtitle:
+      "We'd love to hear from you. Reach out with questions, ideas, or to learn how you can help",
+    formTitle: 'Send Us a Message',
+    fullName: 'Full Name *',
+    emailAddress: 'Email Address *',
+    phoneNumber: 'Phone Number',
+    subject: 'Subject *',
+    selectSubject: 'Select a subject',
+    generalInquiry: 'General Inquiry',
+    volunteerOpportunities: 'Volunteer Opportunities',
+    donationQuestions: 'Donation Questions',
+    partnershipOpportunities: 'Partnership Opportunities',
+    other: 'Other',
+    message: 'Message *',
+    messagePlaceholder: 'Tell us how we can help you...',
+    sendMessage: 'Send Message',
+    contactInfo: 'Contact Information',
+    address: 'Address',
+    addressLine1: '123 Charity Lane',
+    addressLine2: 'Hope City, HC 12345',
+    addressLine3: 'United States',
+    phone: 'Phone',
+    phoneMain: 'Main: +1 (555) 123-4567',
+    phoneEmergency: 'Emergency: +1 (555) 911-HELP',
+    email: 'Email',
+    emailGeneral: 'info@togetherfororphans.org',
+    emailVolunteer: 'volunteer@togetherfororphans.org',
+    officeHours: 'Office Hours',
+    officeHoursLine1: 'Monday - Friday',
+    officeHoursLine2: '8:00 AM - 4:00 PM',
+    visitOffice: 'Visit Our Office',
+    visitOfficeText:
+      'We welcome visitors! Please call ahead to schedule an appointment or tour our facilities.',
+    callToSchedule: 'Call to Schedule',
+    quickLinks: 'Quick Links',
+    quickLink1: '→ Make a Donation',
+    quickLink2: '→ About Our Work',
+    quickLink3: '→ View Our Projects',
+    quickLink4: '→ Read Latest News',
+    namePlaceholder: 'John Doe',
+    emailPlaceholder: 'john@example.com',
+    phonePlaceholder: '+1 (555) 123-4567',
+  },
+
+  donate: {
+    heroTitle: 'Make a Donation',
+    heroSubtitle:
+      'Your generosity transforms lives and creates hope for vulnerable children',
+    yourContribution: 'Your Contribution',
+    frequency: 'Donation Frequency',
+    oneTime: 'One-Time',
+    oneTimeDesc: 'Single donation',
+    monthly: 'Monthly',
+    monthlyDesc: 'Recurring donation',
+    selectAmount: 'Select Amount (USD)',
+    customAmount: 'Custom amount',
+    paymentMethod: 'Payment Method',
+    creditCard: 'Credit Card',
+    bankTransfer: 'Bank Transfer',
+    yourInfo: 'Your Information',
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    emailAddress: 'Email Address',
+    phoneOptional: 'Phone Number (Optional)',
+    donateAmount: 'Donate',
+    perMonth: '/ month',
+    secureDonation: 'Your donation is secure and tax-deductible',
+    yourImpact: 'Your Impact',
+    impact25: 'provides school supplies for one child',
+    impact50: 'covers meals for a child for one month',
+    impact100: 'pays for medical check-ups for 10 children',
+    impact250: "sponsors one child's education for a semester",
+    whyMonthly: 'Why Donate Monthly?',
+    monthlyReason1: 'Provides consistent support for ongoing programs',
+    monthlyReason2: 'Helps us plan and budget more effectively',
+    monthlyReason3: "Creates lasting change in children's lives",
+    monthlyReason4: 'Cancel anytime, no commitment',
+    transparency: '100% Transparency',
+    transparencyText:
+      'We ensure that your donations are used efficiently and effectively.',
+    programServices: 'Program Services:',
+    administration: 'Administration:',
+    fundraising: 'Fundraising:',
+    otherWays: 'Other Ways to Help',
+    otherWaysSubtitle: 'There are many ways to support our mission',
+    volunteer: 'Volunteer',
+    volunteerDesc: 'Share your time and skills to make a direct impact',
+    volunteerLink: 'Learn More →',
+    corporatePartnership: 'Corporate Partnership',
+    corporateDesc: 'Partner with us to create meaningful CSR programs',
+    corporateLink: 'Get in Touch →',
+    legacyGiving: 'Legacy Giving',
+    legacyDesc: 'Leave a lasting legacy through planned giving',
+    legacyLink: 'Find Out How →',
+  },
+};

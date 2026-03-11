@@ -1,10 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
-    <section className="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[500px] sm:h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -20,49 +25,48 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 container-custom text-center text-white">
-        <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
-          Together, We Build
+      <div className="relative z-20 container-custom text-center text-white px-4">
+        <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 leading-tight">
+          {t.home.hero.title1}
           <br />
-          <span className="text-accent">Brighter Futures</span>
+          <span className="text-accent">{t.home.hero.title2}</span>
         </h1>
-        <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-          Supporting orphans and vulnerable children through education, healthcare,
-          and sustainable development programs. Every child deserves a chance to thrive.
+        <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
+          {t.home.hero.subtitle}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
           <Link
             href="/donate"
-            className="btn-secondary text-lg group inline-flex items-center"
+            className="btn-secondary text-base sm:text-lg group inline-flex items-center"
           >
-            Make a Donation
+            {t.home.hero.ctaDonate}
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </Link>
           <Link
             href="/about"
-            className="btn-outline bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary text-lg"
+            className="btn-outline bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary text-base sm:text-lg"
           >
-            Learn More
+            {t.home.hero.ctaLearnMore}
           </Link>
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-            <div className="text-3xl md:text-4xl font-bold mb-2">500+</div>
-            <div className="text-sm md:text-base">Children Supported</div>
+        <div className="mt-10 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 sm:p-6">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">{t.home.hero.statChildrenNum}</div>
+            <div className="text-xs sm:text-sm md:text-base">{t.home.hero.statChildren}</div>
           </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-            <div className="text-3xl md:text-4xl font-bold mb-2">15</div>
-            <div className="text-sm md:text-base">Years of Service</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 sm:p-6">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">{t.home.hero.statYearsNum}</div>
+            <div className="text-xs sm:text-sm md:text-base">{t.home.hero.statYears}</div>
           </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-            <div className="text-3xl md:text-4xl font-bold mb-2">10+</div>
-            <div className="text-sm md:text-base">Active Programs</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 sm:p-6">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">{t.home.hero.statProgramsNum}</div>
+            <div className="text-xs sm:text-sm md:text-base">{t.home.hero.statPrograms}</div>
           </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
-            <div className="text-3xl md:text-4xl font-bold mb-2">100%</div>
-            <div className="text-sm md:text-base">Transparency</div>
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 sm:p-6">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">{t.home.hero.statTransparencyNum}</div>
+            <div className="text-xs sm:text-sm md:text-base">{t.home.hero.statTransparency}</div>
           </div>
         </div>
       </div>
