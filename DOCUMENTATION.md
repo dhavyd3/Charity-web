@@ -268,6 +268,90 @@ Add the article object to the `news.articles` array in both `en.ts` and `fr.ts`.
 
 ---
 
+## Payment System (Stripe)
+
+### Overview
+
+The donation page integrates **Stripe** for payment processing, supporting:
+
+- **Credit/debit cards** via Stripe Payment Element
+- **Google Pay** (auto-detected on supported browsers/devices)
+- **Apple Pay** (auto-detected on Safari/iOS)
+- **One-time donations** via PaymentIntents
+- **Monthly recurring donations** via Stripe Subscriptions
+
+### Architecture
+
+```
+src/
+├── lib/
+│   ├── stripe.ts              # Server-side Stripe instance (lazy init)
+│   └── stripe-client.ts       # Client-side Stripe loader
+├── app/
+│   ├── api/
+│   │   ├── create-payment-intent/route.ts  # One-time donation API
+│   │   ├── create-subscription/route.ts    # Monthly donation API
+│   │   └── webhook/route.ts               # Stripe webhook handler
+│   └── donate/
+│       ├── page.tsx            # Multi-step donation form
+│       └── success/page.tsx    # Post-payment confirmation
+└── components/payment/
+    ├── StripeProvider.tsx      # Stripe Elements wrapper (themed)
+    ├── CheckoutForm.tsx        # Payment Element + submit logic
+    └── PaymentStatus.tsx       # Payment result display
+```
+
+### Setup
+
+1. Create a [Stripe account](https://dashboard.stripe.com/register).
+2. Copy `.env.local.example` to `.env.local` and fill in your keys:
+   ```
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+   STRIPE_SECRET_KEY=sk_test_...
+   STRIPE_WEBHOOK_SECRET=whsec_...
+   ```
+3. For local webhook testing, use the [Stripe CLI](https://stripe.com/docs/stripe-cli):
+   ```bash
+   stripe listen --forward-to localhost:3000/api/webhook
+   ```
+
+### Payment Flow
+
+1. **Step 1 — Amount**: User selects frequency (one-time/monthly) and amount.
+2. **Step 2 — Info**: User enters name, email, phone.
+3. **Step 3 — Payment**: App calls the API to create a PaymentIntent or Subscription, then renders the Stripe Payment Element (which shows card input, Google Pay, Apple Pay).
+4. On success, Stripe redirects to `/donate/success` with donation details.
+5. Stripe sends a webhook to `/api/webhook` for server-side confirmation.
+
+### Google Pay & Apple Pay
+
+These are enabled automatically via Stripe's Payment Element with the `wallets` option:
+
+```tsx
+<PaymentElement options={{ wallets: { googlePay: 'auto', applePay: 'auto' } }} />
+```
+
+They appear automatically when the user's browser/device supports them. No additional setup is needed beyond having a verified Stripe account.
+
+### Webhook Events Handled
+
+| Event                           | Action                        |
+| ------------------------------- | ----------------------------- |
+| `payment_intent.succeeded`      | Log successful one-time donation |
+| `payment_intent.payment_failed` | Log failed payment            |
+| `invoice.paid`                  | Log successful recurring payment |
+| `invoice.payment_failed`        | Log failed subscription payment |
+| `customer.subscription.deleted` | Log subscription cancellation |
+
+### Testing
+
+Use [Stripe test cards](https://stripe.com/docs/testing):
+- **Success**: `4242 4242 4242 4242`
+- **Decline**: `4000 0000 0000 0002`
+- **3D Secure**: `4000 0025 0000 3155`
+
+---
+
 ## Deployment
 
 The app is a standard Next.js application that can be deployed to:
@@ -275,11 +359,19 @@ The app is a standard Next.js application that can be deployed to:
 - **Vercel** (recommended): `vercel deploy`
 - **Netlify**: Configure Next.js plugin
 - **Docker**: Use the official Next.js Dockerfile
-- **Static export**: Add `output: 'export'` to `next.config.ts` for fully static hosting
+- **Static export**: Not available when using API routes (payment system requires server)
 
 ### Environment Variables
 
-No environment variables are required for the base application. Add a `.env.local` file if you integrate external services (CMS, payment gateway, etc.).
+Required for payment processing (see `.env.local.example`):
+
+| Variable                              | Required | Description                   |
+| ------------------------------------- | -------- | ----------------------------- |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`  | Yes      | Stripe publishable key        |
+| `STRIPE_SECRET_KEY`                   | Yes      | Stripe secret key             |
+| `STRIPE_WEBHOOK_SECRET`               | Yes      | Stripe webhook signing secret |
+
+The app builds and runs without these variables (payment will show a configuration message), but donations will not process until they are set.
 
 ---
 
