@@ -42,6 +42,7 @@ export const fr: Translations = {
     makeADonation: 'Faire un Don',
     getInvolved: 'S\'Impliquer',
     supportOurMission: 'Soutenir Notre Mission',
+    loadingPage: 'Chargement de la page suivante',
   },
 
   home: {

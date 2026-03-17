@@ -42,4 +42,147 @@
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  .page-transition-loader {
+    @apply fixed inset-0 z-[120] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary text-white cursor-progress;
+  }
+
+  .page-transition-loader__sr-only {
+    @apply sr-only;
+  }
+
+  .page-transition-loader__veil {
+    @apply absolute inset-0 opacity-90;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.08), transparent 34%),
+      linear-gradient(150deg, rgba(31, 65, 48, 0.12), rgba(45, 95, 63, 0.08) 32%, rgba(230, 126, 34, 0.06) 76%, rgba(255, 255, 255, 0.05));
+  }
+
+  .page-transition-loader__grain {
+    @apply absolute inset-0 opacity-20;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px),
+      radial-gradient(circle at 75% 30%, rgba(127, 216, 190, 0.12) 0 1px, transparent 1px),
+      radial-gradient(circle at 35% 72%, rgba(230, 126, 34, 0.14) 0 1px, transparent 1px);
+    background-size: 18px 18px, 22px 22px, 26px 26px;
+    mix-blend-mode: screen;
+    animation: loader-grain-shift 18s linear infinite;
+  }
+
+  .page-transition-loader__glow {
+    @apply absolute rounded-full blur-3xl;
+    --loader-glow-x: -50%;
+    --loader-glow-y: 0%;
+    transform: translate(var(--loader-glow-x), var(--loader-glow-y));
+    animation: loader-aura-float 9s ease-in-out infinite;
+  }
+
+  .page-transition-loader__glow--warm {
+    --loader-glow-x: -55%;
+    width: clamp(16rem, 38vw, 34rem);
+    height: clamp(16rem, 38vw, 34rem);
+    top: 16%;
+    left: 50%;
+    background: radial-gradient(circle, rgba(230, 126, 34, 0.45), rgba(230, 126, 34, 0.08) 55%, transparent 74%);
+  }
+
+  .page-transition-loader__glow--cool {
+    --loader-glow-x: -45%;
+    width: clamp(18rem, 42vw, 38rem);
+    height: clamp(18rem, 42vw, 38rem);
+    bottom: 8%;
+    left: 50%;
+    background: radial-gradient(circle, rgba(127, 216, 190, 0.3), rgba(127, 216, 190, 0.08) 58%, transparent 76%);
+    animation-delay: -4.5s;
+  }
+
+  .page-transition-loader__shell {
+    @apply relative flex flex-col items-center justify-center gap-5 px-6 text-center;
+    width: min(84vw, 30rem);
+  }
+
+  .page-transition-loader__constellation {
+    @apply relative flex items-center justify-center rounded-full;
+    width: clamp(15rem, 42vw, 24rem);
+    height: clamp(15rem, 42vw, 24rem);
+  }
+
+  .page-transition-loader__svg {
+    @apply h-full w-full drop-shadow-[0_0_42px_rgba(127,216,190,0.2)];
+  }
+
+  .page-transition-loader__caption {
+    @apply relative flex flex-col items-center gap-1;
+  }
+
+  .page-transition-loader__brand {
+    @apply font-heading text-[clamp(1.45rem,4vw,2.2rem)] font-bold tracking-[0.35em] text-white;
+  }
+
+  .page-transition-loader__tagline {
+    @apply max-w-xs text-sm font-medium tracking-[0.12em] text-white/80 sm:text-base;
+  }
+
+  .page-transition-loader__rail {
+    @apply relative h-1.5 w-full max-w-[13rem] overflow-hidden rounded-full bg-white/15;
+  }
+
+  .page-transition-loader__rail-fill {
+    @apply absolute inset-y-0 left-0 w-1/2 rounded-full;
+    background: linear-gradient(90deg, transparent, rgba(127, 216, 190, 0.95), rgba(255, 255, 255, 0.95), rgba(230, 126, 34, 0.95), transparent);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.28);
+  }
+}
+
+@keyframes loader-grain-shift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-2%, 2%, 0) scale(1);
+  }
+}
+
+@keyframes loader-aura-float {
+  0%,
+  100% {
+    transform: translate(var(--loader-glow-x), var(--loader-glow-y)) scale(1);
+  }
+  50% {
+    transform: translate(calc(var(--loader-glow-x) + 2%), calc(var(--loader-glow-y) - 3%)) scale(1.06);
+  }
+}
+
+@keyframes loader-slow-orbit {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes loader-shimmer {
+  0% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-loader__grain,
+  .page-transition-loader__glow,
+  .page-transition-loader__constellation,
+  .page-transition-loader__rail-fill {
+    animation: none;
+  }
 }

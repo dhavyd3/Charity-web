@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
+import PageTransitionLoader from "@/components/PageTransitionLoader";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={inter.className}>
         <LanguageProvider>
+          <PageTransitionLoader />
           <Header />
           <main className="min-h-screen">
             {children}

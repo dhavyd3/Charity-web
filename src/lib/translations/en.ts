@@ -41,6 +41,7 @@ export const en = {
     makeADonation: 'Make a Donation',
     getInvolved: 'Get Involved',
     supportOurMission: 'Support Our Mission',
+    loadingPage: 'Loading the next page',
   },
 
   home: {
