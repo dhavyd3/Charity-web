@@ -15,6 +15,7 @@ export default function DonatePage() {
   const [amount, setAmount] = useState('50');
   const [customAmount, setCustomAmount] = useState('');
   const [frequency, setFrequency] = useState<'once' | 'monthly'>('once');
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,6 +26,16 @@ export default function DonatePage() {
 
   const predefinedAmounts = ['25', '50', '100', '250', '500'];
   const finalAmount = customAmount || amount;
+  const trimmedFirstName = firstName.trim();
+  const trimmedLastName = lastName.trim();
+  const trimmedEmail = email.trim();
+  const trimmedPhone = phone.trim();
+  const isInfoValid = isAnonymous || (!!trimmedFirstName && !!trimmedEmail);
+  const infoLabelClassName = `block text-sm font-semibold mb-1 ${
+    isAnonymous ? 'text-neutral-400' : 'text-neutral-700'
+  }`;
+  const infoInputClassName =
+    'w-full px-4 py-3 border-2 border-neutral-200 rounded-lg transition-colors focus:border-primary focus:outline-none disabled:border-neutral-200 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:cursor-not-allowed';
 
   const handleContinueToPayment = useCallback(async () => {
     setPaymentError(null);
@@ -33,6 +44,11 @@ export default function DonatePage() {
     const endpoint = frequency === 'monthly'
       ? '/api/create-subscription'
       : '/api/create-payment-intent';
+    const donorFirstName = isAnonymous ? '' : trimmedFirstName;
+    const donorLastName = isAnonymous ? '' : trimmedLastName;
+    const donorEmail = isAnonymous ? undefined : trimmedEmail || undefined;
+    const donorPhone = isAnonymous ? '' : trimmedPhone;
+    const donorName = `${donorFirstName} ${donorLastName}`.trim();
 
     try {
       const res = await fetch(endpoint, {
@@ -40,9 +56,13 @@ export default function DonatePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           amount: parseFloat(finalAmount),
-          email,
-          name: `${firstName} ${lastName}`.trim(),
-          metadata: { phone, frequency },
+          email: donorEmail,
+          name: donorName || undefined,
+          metadata: {
+            anonymous: isAnonymous ? 'true' : 'false',
+            frequency,
+            phone: donorPhone,
+          },
         }),
       });
 
@@ -60,7 +80,7 @@ export default function DonatePage() {
     } finally {
       setIsCreatingIntent(false);
     }
-  }, [frequency, finalAmount, email, firstName, lastName, phone, t]);
+  }, [finalAmount, frequency, isAnonymous, t, trimmedEmail, trimmedFirstName, trimmedLastName, trimmedPhone]);
 
   const steps: { key: Step; label: string }[] = [
     { key: 'amount', label: t.donate.payment.stepAmount },
@@ -219,53 +239,70 @@ export default function DonatePage() {
                       </h2>
                     </div>
 
-                    <div className="space-y-4">
+                    <label className="flex items-start gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={isAnonymous}
+                        onChange={(e) => setIsAnonymous(e.target.checked)}
+                        className="mt-1 h-4 w-4 rounded border-neutral-300 text-primary focus:ring-primary"
+                      />
+                      <div className="space-y-1">
+                        <span className="block text-sm font-semibold text-neutral-900">
+                          {t.donate.donateAnonymously}
+                        </span>
+                        <span className="block text-sm text-neutral-600">
+                          {t.donate.anonymousDonationHint}
+                        </span>
+                      </div>
+                    </label>
+
+                    <fieldset disabled={isAnonymous} aria-disabled={isAnonymous} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-neutral-700 mb-1">{t.donate.firstName}</label>
+                          <label className={infoLabelClassName}>{t.donate.firstName}</label>
                           <input
                             type="text"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             placeholder={t.donate.firstName}
-                            className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-primary focus:outline-none"
-                            required
+                            className={infoInputClassName}
+                            required={!isAnonymous}
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-neutral-700 mb-1">{t.donate.lastName}</label>
+                          <label className={infoLabelClassName}>{t.donate.lastName}</label>
                           <input
                             type="text"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
                             placeholder={t.donate.lastName}
-                            className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-primary focus:outline-none"
-                            required
+                            className={infoInputClassName}
+                            required={!isAnonymous}
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-neutral-700 mb-1">{t.donate.emailAddress}</label>
+                        <label className={infoLabelClassName}>{t.donate.emailAddress}</label>
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder={t.donate.emailAddress}
-                          className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-primary focus:outline-none"
-                          required
+                          className={infoInputClassName}
+                          required={!isAnonymous}
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-neutral-700 mb-1">{t.donate.phoneOptional}</label>
+                        <label className={infoLabelClassName}>{t.donate.phoneOptional}</label>
                         <input
                           type="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder={t.donate.phoneOptional}
-                          className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-primary focus:outline-none"
+                          className={infoInputClassName}
                         />
                       </div>
-                    </div>
+                    </fieldset>
 
                     {paymentError && (
                       <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-sm text-red-700">
@@ -283,7 +320,7 @@ export default function DonatePage() {
                       </button>
                       <button
                         onClick={handleContinueToPayment}
-                        disabled={!firstName || !email || isCreatingIntent}
+                        disabled={!isInfoValid || isCreatingIntent}
                         className="sm:flex-[2] btn-secondary py-3 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {isCreatingIntent ? (
@@ -335,7 +372,9 @@ export default function DonatePage() {
                       <CheckoutForm
                         amount={finalAmount}
                         frequency={frequency}
-                        donorName={`${firstName} ${lastName}`.trim()}
+                        donorName={isAnonymous ? '' : `${trimmedFirstName} ${trimmedLastName}`.trim()}
+                        emailProvided={!isAnonymous && !!trimmedEmail}
+                        isAnonymous={isAnonymous}
                       />
                     </StripeProvider>
 

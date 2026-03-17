@@ -5,6 +5,8 @@ export async function POST(request: NextRequest) {
   try {
     const stripe = getStripe();
     const { amount, currency = 'usd', email, name, metadata } = await request.json();
+    const donorEmail = typeof email === 'string' ? email.trim() : '';
+    const donorName = typeof name === 'string' ? name.trim() : '';
 
     if (!amount || amount < 1) {
       return NextResponse.json(
@@ -21,11 +23,11 @@ export async function POST(request: NextRequest) {
       automatic_payment_methods: { enabled: true },
       metadata: {
         donation_type: 'one-time',
-        donor_name: name || '',
-        donor_email: email || '',
+        donor_name: donorName,
+        donor_email: donorEmail,
         ...metadata,
       },
-      receipt_email: email || undefined,
+      receipt_email: donorEmail || undefined,
       description: `One-time donation to Together For Orphans`,
     });
 

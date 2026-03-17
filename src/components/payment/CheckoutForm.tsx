@@ -13,9 +13,17 @@ interface CheckoutFormProps {
   amount: string;
   frequency: 'once' | 'monthly';
   donorName: string;
+  emailProvided: boolean;
+  isAnonymous: boolean;
 }
 
-export default function CheckoutForm({ amount, frequency, donorName }: CheckoutFormProps) {
+export default function CheckoutForm({
+  amount,
+  frequency,
+  donorName,
+  emailProvided,
+  isAnonymous,
+}: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const { t } = useLanguage();
@@ -31,10 +39,21 @@ export default function CheckoutForm({ amount, frequency, donorName }: CheckoutF
     setIsProcessing(true);
     setErrorMessage(null);
 
+    const returnUrlParams = new URLSearchParams({
+      amount,
+      anonymous: isAnonymous ? '1' : '0',
+      emailProvided: emailProvided ? '1' : '0',
+      frequency,
+    });
+
+    if (donorName) {
+      returnUrlParams.set('name', donorName);
+    }
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/donate/success?amount=${amount}&frequency=${frequency}&name=${encodeURIComponent(donorName)}`,
+        return_url: `${window.location.origin}/donate/success?${returnUrlParams.toString()}`,
       },
     });
 

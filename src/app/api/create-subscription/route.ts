@@ -5,6 +5,8 @@ export async function POST(request: NextRequest) {
   try {
     const stripe = getStripe();
     const { amount, currency = 'usd', email, name, metadata } = await request.json();
+    const donorEmail = typeof email === 'string' ? email.trim() : '';
+    const donorName = typeof name === 'string' ? name.trim() : '';
 
     if (!amount || amount < 1) {
       return NextResponse.json(
@@ -16,15 +18,29 @@ export async function POST(request: NextRequest) {
     const amountInCents = Math.round(parseFloat(amount) * 100);
 
     // Find or create a Stripe customer
-    const customers = await stripe.customers.list({ email, limit: 1 });
     let customer;
-    if (customers.data.length > 0) {
-      customer = customers.data[0];
+    if (donorEmail) {
+      const customers = await stripe.customers.list({ email: donorEmail, limit: 1 });
+
+      if (customers.data.length > 0) {
+        customer = customers.data[0];
+      } else {
+        customer = await stripe.customers.create({
+          email: donorEmail,
+          name: donorName || undefined,
+          metadata: {
+            anonymous: metadata?.anonymous === 'true' ? 'true' : 'false',
+            source: 'together-for-orphans',
+          },
+        });
+      }
     } else {
       customer = await stripe.customers.create({
-        email,
-        name,
-        metadata: { source: 'together-for-orphans' },
+        name: donorName || undefined,
+        metadata: {
+          anonymous: metadata?.anonymous === 'true' ? 'true' : 'false',
+          source: 'together-for-orphans',
+        },
       });
     }
 
@@ -49,8 +65,8 @@ export async function POST(request: NextRequest) {
       expand: ['latest_invoice.payment_intent'],
       metadata: {
         donation_type: 'monthly',
-        donor_name: name || '',
-        donor_email: email || '',
+        donor_name: donorName,
+        donor_email: donorEmail,
         ...metadata,
       },
     });

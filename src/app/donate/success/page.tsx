@@ -12,7 +12,15 @@ function SuccessContent() {
 
   const amount = searchParams.get('amount') || '';
   const frequency = searchParams.get('frequency') || 'once';
+  const emailProvided = searchParams.get('emailProvided') === '1';
+  const isAnonymous = searchParams.get('anonymous') === '1';
   const name = searchParams.get('name') || '';
+  const donorDisplayName = isAnonymous ? t.donate.payment.anonymousDonor : name;
+  const nextSteps = [
+    emailProvided ? t.donate.payment.nextStep1 : t.donate.payment.anonymousNextStep1,
+    t.donate.payment.nextStep2,
+    t.donate.payment.nextStep3,
+  ];
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -58,17 +66,19 @@ function SuccessContent() {
                       : t.donate.payment.oneTimeDonation}
                   </span>
                 </div>
-                {name && (
+                {(isAnonymous || name) && (
                   <div className="flex justify-between items-center py-3 border-b border-neutral-100">
                     <span className="text-neutral-600">{t.donate.payment.donorNameLabel}</span>
-                    <span className="font-semibold text-neutral-900">{name}</span>
+                    <span className="font-semibold text-neutral-900">{donorDisplayName}</span>
                   </div>
                 )}
               </div>
-              <div className="mt-6 bg-primary/5 border border-primary/20 rounded-lg p-4 flex items-start space-x-3">
-                <Mail className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-neutral-600">{t.donate.payment.confirmationSent}</p>
-              </div>
+              {emailProvided && (
+                <div className="mt-6 bg-primary/5 border border-primary/20 rounded-lg p-4 flex items-start space-x-3">
+                  <Mail className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-neutral-600">{t.donate.payment.confirmationSent}</p>
+                </div>
+              )}
             </div>
           )}
 
@@ -78,16 +88,14 @@ function SuccessContent() {
               {t.donate.payment.whatHappensNext}
             </h2>
             <div className="space-y-4">
-              {[t.donate.payment.nextStep1, t.donate.payment.nextStep2, t.donate.payment.nextStep3].map(
-                (step, i) => (
-                  <div key={i} className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                      {i + 1}
-                    </div>
-                    <p className="text-neutral-600 pt-1">{step}</p>
+              {nextSteps.map((step, i) => (
+                <div key={i} className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                    {i + 1}
                   </div>
-                )
-              )}
+                  <p className="text-neutral-600 pt-1">{step}</p>
+                </div>
+              ))}
             </div>
           </div>
 
