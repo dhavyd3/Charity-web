@@ -9,7 +9,7 @@ const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative h-[500px] sm:h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen md:min-h-0 md:h-[700px] flex items-center justify-center overflow-hidden pt-16 md:pt-0 pb-16 md:pb-0">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
