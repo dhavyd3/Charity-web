@@ -56,14 +56,16 @@ function getTargetPath(value: string | URL | null | undefined): string | null {
 export default function PageTransitionLoader() {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
-  const { t } = useLanguage();
+  const { isLanguagePending, t } = useLanguage();
 
   const [isVisible, setIsVisible] = useState(false);
 
   const hasMountedRef = useRef(false);
   const currentPathRef = useRef(pathname);
   const targetPathRef = useRef<string | null>(null);
+  const transitionSourceRef = useRef<'route' | 'language' | null>(null);
   const isTransitioningRef = useRef(false);
+  const wasLanguagePendingRef = useRef(false);
   const startTimeRef = useRef(0);
   const navIdRef = useRef(0);
   const exitTimerRef = useRef<number | null>(null);
@@ -90,6 +92,7 @@ export default function PageTransitionLoader() {
       clearPendingTimers();
       isTransitioningRef.current = false;
       targetPathRef.current = null;
+      transitionSourceRef.current = null;
       setIsVisible(false);
     },
     [clearPendingTimers]
@@ -112,6 +115,7 @@ export default function PageTransitionLoader() {
       navIdRef.current += 1;
       startTimeRef.current = performance.now();
       targetPathRef.current = targetPath;
+      transitionSourceRef.current = 'route';
       isTransitioningRef.current = true;
       setIsVisible(true);
       clearPendingTimers();
@@ -123,6 +127,29 @@ export default function PageTransitionLoader() {
     },
     [clearPendingTimers, hideLoader]
   );
+
+  const beginLanguageTransition = useCallback(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (isTransitioningRef.current && transitionSourceRef.current === 'language') {
+      return;
+    }
+
+    navIdRef.current += 1;
+    startTimeRef.current = performance.now();
+    targetPathRef.current = null;
+    transitionSourceRef.current = 'language';
+    isTransitioningRef.current = true;
+    setIsVisible(true);
+    clearPendingTimers();
+
+    const navId = navIdRef.current;
+    fallbackTimerRef.current = window.setTimeout(() => {
+      hideLoader(navId);
+    }, MAX_VISIBLE_MS);
+  }, [clearPendingTimers, hideLoader]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -137,7 +164,7 @@ export default function PageTransitionLoader() {
 
     currentPathRef.current = pathname;
 
-    if (!isTransitioningRef.current) {
+    if (!isTransitioningRef.current || transitionSourceRef.current !== 'route') {
       return;
     }
 
@@ -154,6 +181,34 @@ export default function PageTransitionLoader() {
   useEffect(() => {
     currentPathRef.current = pathname;
   }, [pathname]);
+
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      return;
+    }
+
+    if (!wasLanguagePendingRef.current && isLanguagePending) {
+      beginLanguageTransition();
+    }
+
+    if (
+      wasLanguagePendingRef.current &&
+      !isLanguagePending &&
+      isTransitioningRef.current &&
+      transitionSourceRef.current === 'language'
+    ) {
+      const navId = navIdRef.current;
+      const elapsed = performance.now() - startTimeRef.current;
+      const remaining = Math.max(MIN_VISIBLE_MS - elapsed, 0);
+
+      clearTimer(exitTimerRef);
+      exitTimerRef.current = window.setTimeout(() => {
+        hideLoader(navId);
+      }, remaining + EXIT_DELAY_MS);
+    }
+
+    wasLanguagePendingRef.current = isLanguagePending;
+  }, [beginLanguageTransition, hideLoader, isLanguagePending]);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {

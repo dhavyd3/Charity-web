@@ -2,14 +2,25 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { Menu, X, Heart, Globe, ChevronDown } from 'lucide-react';
 import { CONTACT } from '@/lib/constants';
-import { useLanguage } from '@/lib/LanguageContext';
+import { useLanguage, type Language } from '@/lib/LanguageContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, isLanguagePending, t } = useLanguage();
+
+  const languageOptions: Array<{ value: Language; label: string }> = [
+    { value: 'EN', label: 'English' },
+    { value: 'FR', label: 'Français' },
+    { value: 'ES', label: 'Español' },
+    { value: 'PT', label: 'Português' },
+  ];
+
+  const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(event.target.value as Language);
+  };
 
   const navLinks = [
     { name: t.nav.home, href: '/' },
@@ -33,15 +44,32 @@ const Header = () => {
               <span className="hidden md:inline">✉️ {CONTACT.email}</span>
             </div>
             <div className="flex items-center space-x-3">
-              <button
-                onClick={() => setLanguage(language === 'EN' ? 'FR' : 'EN')}
-                className="flex items-center space-x-1.5 text-neutral-600 hover:text-primary transition-colors px-3 py-1 rounded-full hover:bg-white border border-transparent hover:border-neutral-200"
-                aria-label={language === 'EN' ? 'Switch to French' : 'Switch to English'}
-              >
-                <Globe size={14} />
-                <span className="font-medium">{language === 'EN' ? 'FR' : 'EN'}</span>
-                <ChevronDown size={12} />
-              </button>
+              <div className="relative">
+                <Globe
+                  size={14}
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500"
+                  aria-hidden="true"
+                />
+                <select
+                  value={language}
+                  onChange={handleLanguageChange}
+                  disabled={isLanguagePending}
+                  aria-label="Select language"
+                  aria-busy={isLanguagePending}
+                  className="appearance-none rounded-full border border-neutral-200 bg-white py-1 pl-8 pr-8 text-sm font-medium text-neutral-700 shadow-sm transition-colors hover:border-neutral-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15 disabled:cursor-wait disabled:opacity-70"
+                >
+                  {languageOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  size={12}
+                  className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500"
+                  aria-hidden="true"
+                />
+              </div>
             </div>
           </div>
         </div>

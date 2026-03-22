@@ -1,21 +1,28 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import { en } from '@/lib/translations/en';
-import { fr } from '@/lib/translations/fr';
-import type { Translations } from '@/lib/translations';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useTransition,
+  type ReactNode,
+} from 'react';
+import { en, es, fr, pt, type Translations } from '@/lib/translations';
 
-export type Language = 'EN' | 'FR';
+export type Language = 'EN' | 'FR' | 'ES' | 'PT';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
+  isLanguagePending: boolean;
   t: Translations;
 }
 
 const defaultContext: LanguageContextType = {
   language: 'EN',
   setLanguage: () => {},
+  isLanguagePending: false,
   t: en,
 };
 
@@ -23,23 +30,39 @@ const LanguageContext = createContext<LanguageContextType>(defaultContext);
 
 const STORAGE_KEY = 'tfo-language';
 
-const translationMap: Record<Language, Translations> = { EN: en, FR: fr };
+const translationMap: Record<Language, Translations> = {
+  EN: en,
+  FR: fr,
+  ES: es,
+  PT: pt,
+};
+
+function isLanguage(value: string | null): value is Language {
+  return value === 'EN' || value === 'FR' || value === 'ES' || value === 'PT';
+}
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('EN');
   const [mounted, setMounted] = useState(false);
+  const [isLanguagePending, startLanguageTransition] = useTransition();
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Language | null;
-    if (stored === 'EN' || stored === 'FR') {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (isLanguage(stored)) {
       setLanguageState(stored);
     }
     setMounted(true);
   }, []);
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
     localStorage.setItem(STORAGE_KEY, lang);
+    if (lang === language) {
+      return;
+    }
+
+    startLanguageTransition(() => {
+      setLanguageState(lang);
+    });
   };
 
   const t = translationMap[language];
@@ -49,7 +72,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider
+      value={{ language, setLanguage, isLanguagePending, t }}
+    >
       {children}
     </LanguageContext.Provider>
   );
